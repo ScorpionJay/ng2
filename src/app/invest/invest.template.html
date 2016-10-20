@@ -1,0 +1,19 @@
+<div class="top">投资</div>
+
+<div class='list'>
+	<div class="item" *ngFor="let invest of invests" (click)='gotoDetail(invest)'>
+		<div class="up">
+			<div class="left">{{invest.name}}</div>
+			<div class="right">{{invest.description}}</div>
+		</div>
+		<div class="down">
+			<div class="icon"><i class="fa fa-futbol-o" aria-hidden="true"></i></div>
+			<div class='rate'>{{invest.rate}}</div>
+			<div class='term'>{{invest.term}}</div>
+			<div>></div>
+		</div>
+	</div>
+</div>
+
+
+<my-nav active='invest'></my-nav>
