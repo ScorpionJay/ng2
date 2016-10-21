@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core'
 
-import { Hero } from './hero';
+import { Data } from './data';
 import { HomeService } from './home.service';
-
+import {KSSwiperContainer, KSSwiperSlide} from 'angular2-swiper';
 @Component({
 		selector:'my-home',
 		templateUrl:'./home.template.html',
@@ -12,10 +12,16 @@ import { HomeService } from './home.service';
 export class HomeComponent implements OnInit{
 	title = '首页...'
 
-	heroes:Hero[] = []
+	datas:Data[]
+
+	swipeOptions: any
+
+	slides: any
 
 	constructor(
 		private homeService: HomeService) {}
+
+		
 
 	ngOnInit(): void {
 		// this.homeService.getHeroes()
@@ -24,9 +30,34 @@ export class HomeComponent implements OnInit{
 		// 					console.log(heroes)
 		// 				}
 		//				)
+
+		this.slides = [
+			'http://onejay.top/images/1.jpg',
+			'http://onejay.top/images/2.jpg',
+			'http://onejay.top/images/3.jpg',
+			'http://onejay.top/images/4.jpg',
+			'http://onejay.top/images/5.jpg'
+		] 
+
+		this.swipeOptions = {
+	      loop: true,
+	      autoplay:5000,
+	      speed: 400,
+	      pagination: '.swiper-pagination',
+	      autoHeight:true
+	    }
+
+		this.datas = [
+			{id:1,type:'jj',name:'基金',color:'red'},
+			{id:2,type:'gp',name:'股票',color:'yellow'},
+			{id:3,type:'qh',name:'期货',color:'#4a2bf5'},
+			{id:4,type:'zq',name:'债券',color:'blue'},
+			{id:5,type:'zr',name:'转让',color:'black'},
+			{id:6,type:'cp',name:'彩票',color:'gray'}
+		]
 	}
 
-	gotoDetail(hero:Hero):void {
+	gotoDetail(hero:Data):void {
 		// let link = ['/detail',hero.id]
 		// this.router.navigate(link)
 	}

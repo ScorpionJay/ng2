@@ -1,8 +1,19 @@
+<div class="top">首页</div>
 
-
-<h1>{{title}}</h1>
-<ul *ngFor="let hero of heroes">
-	<li>{{hero.name}}</li>
-</ul>
+<div class="container">
+	<!-- swiper -->
+	<div class="myslides"  style="background:#eee;height:205px;">
+	  <ks-swiper-container [options]="swipeOptions">
+	    <ks-swiper-slide *ngFor="let s of slides">
+	      <img src="{{s}}" style="height:205px;width:100%">
+	    </ks-swiper-slide>
+	  </ks-swiper-container>
+	</div>
+	
+	<!--nav-->
+	<div  class="nav">
+		<div *ngFor="let data of datas" [ngStyle]="{'background-color': data.color }">{{data.name}}</div>
+	</div>
+</div>
 
 <my-nav active='home'></my-nav>

@@ -33,3 +33,7 @@ db.invest.insertMany([
 
 db.invest.find({})
 ~~~
+
+
+## [swiper](https://npmdaily.com/pkg/angular2-swiper)
+

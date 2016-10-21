@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Hero } from './hero'
+import { Data } from './data'
 //import { HEROES } from './mock-heroes'
 
 
@@ -16,10 +16,10 @@ export class HomeService {
 
   constructor(private http: Http){}
 
-  getHeroes(): Promise<Hero[]> {
+  getHeroes(): Promise<Data[]> {
     return this.http.get(this.heroesUrl)
     		   .toPromise()
-    		   .then(response => response.json().data as Hero[])
+    		   .then(response => response.json().data as Data[])
     		   .catch(this.handleError)
   }
 
@@ -28,12 +28,12 @@ export class HomeService {
 	  return Promise.reject(error.message || error);
   }
 
-  getHero(id: number): Promise<Hero> {
+  getHero(id: number): Promise<Data> {
   	return this.getHeroes()
   				.then(heroes => heroes.find(hero => hero.id === id))
   }
 
-	update(hero: Hero): Promise<Hero> {
+	update(hero: Data): Promise<Data> {
 	  const url = `${this.heroesUrl}/${hero.id}`;
 	  return this.http
 	    .put(url, JSON.stringify(hero), {headers: this.headers})
@@ -42,7 +42,7 @@ export class HomeService {
 	    .catch(this.handleError);
 	}
 
-	create(name: string): Promise<Hero> {
+	create(name: string): Promise<Data> {
 	  return this.http
 	    .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
 	    .toPromise()

@@ -21,13 +21,16 @@ import { InvestListService } from './invest/list/investList.service'
 import { AssetsComponent } from './assets/assets.component'
 import { NavComponent } from './common/nav.component'
 
+import {KSSwiperModule} from 'angular2-swiper';
+
 @NgModule({
   imports: [ 
   	BrowserModule,
   	FormsModule,
   	HttpModule,
   	//InMemoryWebApiModule.forRoot(InMemoryDataService),
-  	routing
+  	routing,
+    KSSwiperModule
   ],
   declarations: [ AppComponent,
     HomeComponent,
