@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var MongoClient = require('mongodb').MongoClient;
 
+var url = 'mongodb://jay:jay@localhost:27017/admin';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,14 +11,16 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/api/test', function(req, res, next) {
-  res.send({data:[
-      {type: 'node express', name: 'test1 hack ',description:'description',rate:'7.00~8.00%',term:'aaa'},
-      {type: 'qdb', name: 'test2',description:'description',rate:'7.00~8.00%',term:'3aaa'},
-      {type: 'hqb', name: 'test3',description:'description',rate:'7.00~8.00%',term:'aaa'},
-      {type: 'tyb', name: 'test4',description:'description',rate:'7.00~8.00%',term:'aaa'},
-      {type: 'xsb', name: 'test5',description:'description',rate:'7.00~8.00%',term:'dasf'},
-    ]});
-});
 
+	MongoClient.connect(url, function(err, db) {
+		var collection = db.collection('invest');
+		collection.find({}).toArray(function(err, docs) {
+			console.log("Found the following records");
+			console.log(docs)
+			res.send({data:docs})
+		});
+	})
+
+});
 
 module.exports = router;
